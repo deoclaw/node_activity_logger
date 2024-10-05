@@ -26,6 +26,12 @@ const logEvents = async (message, logName) => {
 	}
 };
 
+const clearLog = (logName) => {
+	if (fs.existsSync(path.join(__dirname, "..", "logs", logName))) {
+		fsPromises.writeFile(path.join(__dirname, "..", "logs", logName), "");
+	}
+};
+
 // Custom Middleware
 // we need next bc we're building this
 // this will be used when we call a fetch api from the front end to....some page....that will handle this? this is where i'm a little confused -- I had written this for a different class. OR! Or, when it calls the fetch api, it willreturn a message if red or a message if blue, yes!
@@ -41,4 +47,4 @@ const logger = (req, res, next) => {
 };
 
 // export our logEvents fxn
-module.exports = { logEvents, logger };
+module.exports = { logEvents, logger, clearLog };
