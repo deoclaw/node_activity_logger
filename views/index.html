@@ -17,6 +17,22 @@
 			// send a fetch with a post that has a string object to some URL endpoint
 			const redbtn = document.getElementById("red");
 			const bluebtn = document.getElementById("blue");
+			const msgArea = document.getElementById("messages");
+
+			function getLog() {
+				const response = fetch("/log")
+					.then((response) => {
+						if (!response.ok) {
+							throw new Error(`Error: ${response.status}`);
+						}
+						return response.text();
+					})
+					.then((text) => {
+						msgArea.textContent = text;
+					});
+			}
+
+			setInterval(getLog, 120000);
 
 			const sendRedEvent = async (e) => {
 				e.preventDefault();

@@ -26,25 +26,28 @@ const logEvents = async (message, logName) => {
 	}
 };
 
-const clearLog = (logName) => {
-	if (fs.existsSync(path.join(__dirname, "..", "logs", logName))) {
-		fsPromises.writeFile(path.join(__dirname, "..", "logs", logName), "");
+// const clearLog = (logName) => {
+// 	if (fs.existsSync(path.join(__dirname, "..", "logs", logName))) {
+// 		fsPromises.writeFile(path.join(__dirname, "..", "logs", logName), "");
+// 	}
+// };
+
+function removeLog(log) {
+	if (fs.existsSync(path.join(__dirname, "..", "logs", log))) {
+		fsPromises.writeFile(path.join(__dirname, "..", "logs", log), "");
 	}
-};
+}
 
 // Custom Middleware
 // we need next bc we're building this
 // this will be used when we call a fetch api from the front end to....some page....that will handle this? this is where i'm a little confused -- I had written this for a different class. OR! Or, when it calls the fetch api, it willreturn a message if red or a message if blue, yes!
 const logger = (req, res, next) => {
-	if (req.url === "/log") {
-		logEvents(
-			`${req.method}\t${req.headers.origin}\t${req.url}\t${req.body.message}`,
-			"reqLog.txt"
-		);
+	if (req.url === "/log" && req.method === "POST") {
+		logEvents(`${req.body.message}`, "reqLog.txt");
 	}
 	// console.log(`${req.method} ${req.body}`);
 	next();
 };
 
 // export our logEvents fxn
-module.exports = { logEvents, logger, clearLog };
+module.exports = { logEvents, logger, removeLog };
