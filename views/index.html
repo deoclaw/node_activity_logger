@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Red Pill or Blue Pill</title>
-		<link rel="stylesheet" href="../public/styles.css" />
+		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
 		<main>
@@ -13,5 +13,41 @@
 			<button id="blue">Blue Pill</button>
 			<div id="messages"></div>
 		</main>
+		<script>
+			// send a fetch with a post that has a string object to some URL endpoint
+			const redbtn = document.getElementById("red");
+			const bluebtn = document.getElementById("blue");
+
+			const sendRedEvent = async (e) => {
+				e.preventDefault();
+				const reqOption = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						message: "Red button clicked.",
+					}),
+				};
+				const response = await fetch("/log", reqOption);
+			};
+
+			const sendBlueEvent = async (e) => {
+				e.preventDefault();
+				const reqOption = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						message: "Blue button clicked.",
+					}),
+				};
+				const response = await fetch("/log", reqOption);
+			};
+
+			redbtn.addEventListener("click", sendRedEvent);
+			bluebtn.addEventListener("click", sendBlueEvent);
+		</script>
 	</body>
 </html>

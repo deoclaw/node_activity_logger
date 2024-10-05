@@ -1,11 +1,15 @@
 {
-  "name": "node_activity_logger",
-  "version": "1.0.0",
-  "description": "an activity logger",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "deoclaw",
-  "license": "ISC"
+	"name": "node_activity_logger",
+	"version": "1.0.0",
+	"description": "an activity logger",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "deoclaw",
+	"license": "ISC",
+	"dependencies": {
+		"date-fns": "^3.6.0",
+		"express": "^4.21.0"
+	}
 }
