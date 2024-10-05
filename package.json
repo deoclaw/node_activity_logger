@@ -1,0 +1,11 @@
+{
+  "name": "node_activity_logger",
+  "version": "1.0.0",
+  "description": "an activity logger",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "deoclaw",
+  "license": "ISC"
+}
